@@ -60,8 +60,8 @@
   % JML VERSION
 %  Mutual linguistic adaptation between speakers is often said to facilitate mutual understanding, but whether alignment is the result of a mechanistic effect rooted in implicit memory processes, or whether it is an explicit linguistic device is, to date, unclear.  In this context, the question whether adaptation of lexical or syntactic decisions can bring about emotional change in a conversation partner can give evidence for or against an implicit alignment process.  We analyze a longitudinal data set of conversations in a web-based forum of cancer patients.  We examine the role of linguistic alignment between thread-initiating posts and their responses in bringing a positive change in the sentiment of the conversation thread initiator. Specifically, we introduce a novel representation of posts that includes an encoding of the lexical/syntactic alignment between the initial post of the thread and their replies. We use the resulting representation of posts to construct a temporal-causal model to investigate the prima facie causes of any positive changes in the sentiment of the thread initiator.   The temporal-causal model, using probabilistic Kripke Structures and Probabilistic Computation Tree Logic, allows for limited causal inference on observational data, and is thus applicable to a wide range of applications in computational psycholinguistics and data-driven cognitive science.  Our analysis shows that high lexical alignment, but not syntactic alignment, between the reply posts and their thread initiating post, together with the positive sentiment  of  reply  posts, are the prima facie causes of a positive change  in  the  sentiment  of  the thread originator.  Thus, we find support for separate encoding of (explicit) lexical and (implicit) syntactic knowledge.
 
-    
-Mutual linguistic adaptation between speakers is often said to facilitate mutual understanding. Parallelism is also a common rhetorical device.  However, whether such alignment can cause an emotional reaction of social consequence is not understood. 
+
+Mutual linguistic adaptation between speakers is often said to facilitate mutual understanding. Parallelism is also a common rhetorical device.  However, whether such alignment can cause an emotional reaction of social consequence is not understood.
 We describe a method for causal inference in graph-based models of observational, longitudinal data and apply it to analyze a set of written conversations between cancer survivors. We examine the role of lexical and syntactic alignment between thread-initiating posts and their responses in bringing on sentiment change in the posts of the person starting the conversation. Our analysis shows that high lexical, but not syntactic, alignment, between the reply posts and their thread initiating post, together with the positive sentiment  of  reply  posts, are the prima facie causes of a positive change  in  the  sentiment  of  the thread originator.  %  Furthermore, it provides an important basis for additional studies and experiments regarding causal factors for other types of benefits of online health communities.
 \end{abstract}
 
@@ -74,7 +74,7 @@ In sum, recent work suggests that such alignment has its basis in general cognit
 
 %Certainly, merely because these are mechanistically produced patterns, we cannot conclude that they are not affected by implicit or explicit (consciously available) variables.  An obvious one is \emph{attention} and the state of working memory, which can explain why task-oriented dialogue seems to display stronger syntactic priming compare to spontaneous conversation, and also a stronger association between task success and alignment \parencite{reitter_alignment_2014}. Other factors may influence alignment, regardless of the actual architectural basis of the underlying contributory mechanisms such as syntactic and lexical priming.
 
-%So, is alignment merely a useful epiphenomenon of such memory-based adaptation effects?  Can it communicate anything? 
+%So, is alignment merely a useful epiphenomenon of such memory-based adaptation effects?  Can it communicate anything?
 However, there is limited evidence, to our knowledge, that alignment is also a common linguistic device that signals agreement with the subject matter, or social relationships, even though some rhetorical use of structural parallelism in contrasts and conjuncts \parencite{aristotle2015rhetoric} can be modeled as a priming effect \parencite{dubey2008probabilistic}.  The social and communicative function of alignment can best be studied by looking at the causal effects of different types of alignment.  In this paper, we ask whether alignment makes socially supportive dialogue more effective.  We ask how dialogue partners react to an aligning speaker, as opposed to one that does not align.
 
 The dialogue data we examine are not hand-picked or experimentally collected, but they are realistic, observational, and they are of large scale.  Commonly used to test speculative hypotheses or examine difficult-to-pin-down effects in noisy data, big-data empirical methods also produce ecologically valid conclusions: in other words, findings apply to naturalistic language use.  Such data-driven methodologies have become well-established in computational psycholinguistic inquiry (e.g., \cite{gries2005corpusbased}, \cite{jaeger2006speakers}, \cite{reitter2017alignment}).  However, observational data also raise the question of how causal inference can be achieved, when variables cannot be manipulated to observe their effects. In this paper we describe a method that infers  the set of possible causal models from the data, linking a subset of given, observable time-stamped events.    This process is broadly applicable to longitudinal, large-scale data.  Unlike commonly used observational methods such as linear mixed-effects regression or Bayesian modeling, it takes not just the correlational, but also the temporal relations in the data into account (causes precede effects).   It results in a graph model that explicitly describes the causal structure of observed variables.
@@ -397,12 +397,12 @@ We have shown that linguistic alignment is a potential causal factor of the sent
 \begin{figure}[!htb]
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=\linewidth]{Figures/EnlargeposF05Lex20.pdf}
+  \includegraphics[width=\linewidth]{Figures/posF05Lex20.pdf}
   \caption{\label{fig:posf05Lex}}
 \end{subfigure}
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=\linewidth]{Figures/EnlargenegF05Lex20.pdf}
+  \includegraphics[width=\linewidth]{Figures/negF05Lex20.pdf}
   \caption{\label{fig:negf05Lex}}
 \end{subfigure}
 \caption{Causal significance analysis on sentiment change of the thread initiator using lexical alignment and sentiment score of replies. The vertical line shows the threshold we choose.}
@@ -416,12 +416,12 @@ Figure~\ref{fig:negf05Lex} suggests that, for lexical alignment, both $+A_{LEX} 
 \begin{figure}[!htb]
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=\linewidth]{Figures/EnlargeposF05Syn_20.pdf}
+  \includegraphics[width=\linewidth]{Figures/posF05Syn20.pdf}
   \caption{\label{fig:posf05Syn}}
 \end{subfigure}
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=\linewidth]{Figures/EnlargenegF05Syn_20.pdf}
+  \includegraphics[width=\linewidth]{Figures/negF05Syn20.pdf}
   \caption{\label{fig:negf05Syn}}
 \end{subfigure}
 \caption{Causal significance analysis on sentiment change of the thread initiator using syntactic alignment and sentiment score of replies}
