@@ -1,55 +1,3 @@
-\documentclass[man,biblatex,floatsintext]{apa6}
-
-%\usepackage[utf8x]{inputenc}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{amsthm}
-\usepackage{graphicx}
-\usepackage{subcaption}
-\usepackage{comment}
-\usepackage{breqn}
-\newcommand{\up}{\vspace*{-12pt}}
-%\usepackage[colorinlistoftodos]{todonotes}
-
-\usepackage[american]{babel}
-\usepackage{csquotes}
-\DeclareLanguageMapping{american}{american-apa}
-\addbibresource{causal.bib}
-\addbibresource{reitter-bibl.bib}
-
-\usepackage{latexsym}
-\usepackage{url}
-
-\newtheorem{thm}{Theorem}[section]
-\newtheorem{defn}[thm]{Definition}
-
-\newcommand{\citegen}[1]{\citeauthor{#1}'s (\citeyear{#1})}
-
-%\title{Linguistic alignment in implicit and explicit memory processes: Temporal-Causal Inference on sentiment change and communicative choices}
-\title{Linguistic alignment in implicit and explicit memory processes: Temporal-Causal Inference on large-scale dialogue data: How linguistic alignment is linked to sentiment change}
-\shorttitle{Alignment and sentiment change}
-
-% to do - talk to co-authors
-%, Ngot Bui, and Vasant Honavar \\
-
-\fiveauthors{David Reitter}
-{Yafei Wang}
-{John Yen}
-{Ngot Bui}
-{Vasant Honavar}
-
-\fiveaffiliations{Penn State, Google}
-{Penn State, LinkedIn}
-{Penn State}
-{Penn State, Google}
-{Penn State}
-
-%{\tt reitter@psu.edu, yawang1@linkedin.com, jyen@ist.psu.edu, bpngot@google.com, vhonavar@ist.psu.edu}
-
-%% NOTE:  INCLUDE ACKNOWLEDGEMENTS IN FINAL VERSION
-
-
-\begin{document}
 
 \maketitle
 
@@ -61,29 +9,30 @@
 %  Mutual linguistic adaptation between speakers is often said to facilitate mutual understanding, but whether alignment is the result of a mechanistic effect rooted in implicit memory processes, or whether it is an explicit linguistic device is, to date, unclear.  In this context, the question whether adaptation of lexical or syntactic decisions can bring about emotional change in a conversation partner can give evidence for or against an implicit alignment process.  We analyze a longitudinal data set of conversations in a web-based forum of cancer patients.  We examine the role of linguistic alignment between thread-initiating posts and their responses in bringing a positive change in the sentiment of the conversation thread initiator. Specifically, we introduce a novel representation of posts that includes an encoding of the lexical/syntactic alignment between the initial post of the thread and their replies. We use the resulting representation of posts to construct a temporal-causal model to investigate the prima facie causes of any positive changes in the sentiment of the thread initiator.   The temporal-causal model, using probabilistic Kripke Structures and Probabilistic Computation Tree Logic, allows for limited causal inference on observational data, and is thus applicable to a wide range of applications in computational psycholinguistics and data-driven cognitive science.  Our analysis shows that high lexical alignment, but not syntactic alignment, between the reply posts and their thread initiating post, together with the positive sentiment  of  reply  posts, are the prima facie causes of a positive change  in  the  sentiment  of  the thread originator.  Thus, we find support for separate encoding of (explicit) lexical and (implicit) syntactic knowledge.
 
 
-Mutual linguistic adaptation between speakers is often said to facilitate mutual understanding. Parallelism is also a common rhetorical device.  However, whether such alignment can cause an emotional reaction of social consequence is not understood.
-We describe a method for causal inference in graph-based models of observational, longitudinal data and apply it to analyze a set of written conversations between cancer survivors. We examine the role of lexical and syntactic alignment between thread-initiating posts and their responses in bringing on sentiment change in the posts of the person starting the conversation. Our analysis shows that high lexical, but not syntactic, alignment, between the reply posts and their thread initiating post, together with the positive sentiment  of  reply  posts, are the prima facie causes of a positive change  in  the  sentiment  of  the thread originator.  %  Furthermore, it provides an important basis for additional studies and experiments regarding causal factors for other types of benefits of online health communities.
+Mutual linguistic adaptation between speakers is often said to facilitate mutual understanding. Parallelism is also a common rhetorical device.  However, whether such alignment can cause an emotional reaction of social consequence is not understood. Examining such questions of causation is difficult in naturalistic, usually observational data.  
+We describe a method for causal inference in graph-based models of observational, longitudinal data and apply it to analyze a set of written conversations between cancer survivors. We examine the role of lexical and syntactic alignment between thread-initiating posts and their responses in bringing on sentiment change in the posts of the person starting the conversation. Our analysis shows that replies can effect a positive change in sentiment in the addressee if their language strongly aligns with that of the the thread-initiating post. Syntactic alignment does not facilitate such sentiment change. The causal inference method we demonstrate provides a basis for additional studies and experiments regarding causal factors in observational linguistic and psychological data.
 \end{abstract}
 
 \section{Introduction}
 
-Dialogue is purposeful: some conversations convey information, others establish a social rapport.  Many conversational transactions serve to improve the emotional well-being of its participants.  This paper studies the relationship of this latter type of dialogue and the theoretical concept of mutual adaptation, also called \emph{alignment}.
+Dialogue is purposeful: some conversations convey information, others establish a social rapport.  Many conversational transactions serve to improve the emotional well-being of its participants.  To find out how such transactions are achieved, and what linguistic and communicative devices make them more effective, naturalistic settings can provide reliable and large-scale data.  Examining such conversations is not necessarily insightful, as the nature of traditional correlational methods prevents us from establishing causal relationships between variables, e.g., between sentiment changes and the use of linguistic devices.  Manipulative studies \parencite{kramer2014facebookContagion} are ethically questionable and can jeopardize real-world communities.  However, new methods of causal modeling and inference allow us to harness temporal relationships in combination with probabilistic analysis.  This is what we describe and demonstrate here to examine if and how speakers strategically adapt their language to better convey emotions. 
 
+This paper studies the theoretical concept of mutual adaptation, also called \emph{alignment}.
 We are interested in whether alignment assists speakers in conveying emotions through language.  One reason to ask that question is that answers may provide evidence for the inner workings of the human language production system, and for the cognitive mechanisms involved in dialogue.   There is growing evidence that a number of effects of fundamentally cognitive origins conspire to make dialogue an easy task for speakers, a rich method of language learning and language change.  General cognition as a driving force in people's dialogic interactions is evident in effects that influence information structure and information distribution \parencite{jaeger2006speakers,xu_information_2018}, but also in adaptation effects such an \emph{interactive alignment} \parencite{pickering2004toward} and specifically priming (e.g., \cite{branigan2000syntactic}), which mirrors cue-based memory retrieval dynamics and therefore can be well explained as an effect of implicit learning \parencite{chang2006becoming,kaschak2011implicit,reitter_computational_2011}.
-In sum, recent work suggests that such alignment has its basis in general cognition, as opposed to mechanisms that are specific to language processing and dialogue.  All in all, this casts alignment as the useful result of psychological processing mechanisms as opposed to being a \emph{signal} that conveys meaning.
+In sum, recent work suggests that such alignment has its basis in general cognition, as opposed to mechanisms that are specific to language processing and dialogue.  All in all, this casts alignment as the useful result of psychological processing mechanisms as opposed to being a \emph{signal} established by convention to conveys meaning.
 
 %Certainly, merely because these are mechanistically produced patterns, we cannot conclude that they are not affected by implicit or explicit (consciously available) variables.  An obvious one is \emph{attention} and the state of working memory, which can explain why task-oriented dialogue seems to display stronger syntactic priming compare to spontaneous conversation, and also a stronger association between task success and alignment \parencite{reitter_alignment_2014}. Other factors may influence alignment, regardless of the actual architectural basis of the underlying contributory mechanisms such as syntactic and lexical priming.
 
 %So, is alignment merely a useful epiphenomenon of such memory-based adaptation effects?  Can it communicate anything?
-However, there is limited evidence, to our knowledge, that alignment is also a common linguistic device that signals agreement with the subject matter, or social relationships, even though some rhetorical use of structural parallelism in contrasts and conjuncts \parencite{aristotle2015rhetoric} can be modeled as a priming effect \parencite{dubey2008probabilistic}.  The social and communicative function of alignment can best be studied by looking at the causal effects of different types of alignment.  In this paper, we ask whether alignment makes socially supportive dialogue more effective.  We ask how dialogue partners react to an aligning speaker, as opposed to one that does not align.
+However, there is limited evidence, to our knowledge, that alignment is also a common linguistic device that signals agreement with the subject matter, or social relationships, even though some rhetorical use of structural parallelism in contrasts and conjuncts \parencite{aristotle2015rhetoric} can be modeled as a priming effect \parencite{dubey2008probabilistic}.  The social and communicative function of alignment can best be studied by looking at the causal effects of different types of alignment.  In this paper, we ask whether alignment makes socially supportive dialogue more effective.  We ask how dialogue partners react to an aligning speaker, as opposed to one that does not align.  We posit that alignment of word choice (\emph{lexical alignment}) may not share the same status as alignment of sentence structure (\emph{structural, syntactic alignment}).
 
 The dialogue data we examine are not hand-picked or experimentally collected, but they are realistic, observational, and they are of large scale.  Commonly used to test speculative hypotheses or examine difficult-to-pin-down effects in noisy data, big-data empirical methods also produce ecologically valid conclusions: in other words, findings apply to naturalistic language use.  Such data-driven methodologies have become well-established in computational psycholinguistic inquiry (e.g., \cite{gries2005corpusbased}, \cite{jaeger2006speakers}, \cite{reitter2017alignment}).  However, observational data also raise the question of how causal inference can be achieved, when variables cannot be manipulated to observe their effects. In this paper we describe a method that infers  the set of possible causal models from the data, linking a subset of given, observable time-stamped events.    This process is broadly applicable to longitudinal, large-scale data.  Unlike commonly used observational methods such as linear mixed-effects regression or Bayesian modeling, it takes not just the correlational, but also the temporal relations in the data into account (causes precede effects).   It results in a graph model that explicitly describes the causal structure of observed variables.
 
 
 \section{Socially supportive dialogue: online health communities}
 
-A rich type of dialogue to study social and emotional effects of alignment is found in interactions that are intended to be supportive from one speaker towards the other (or mutually so).
-\emph{Online health communities} (OHCs) constitute an important source of information and social support for many people afflicted with long-term, serious disease \parencite{dunkel1984social}. Previous studies found that OHC participants report increased social support, reduced levels of depression and psychological stress, increased optimism about life\parencite{rodgers2005internet}, increased ability to cope with patients' health conditions, and improvements in both the physical and the psychological aspects of lives \parencite{dunkel1984social,rodgers2005internet, maloney2005multilevel,beaudoin2008modeling,bouma2015internet}. American Cancer Society's Cancer Survivor Network (CSN), a 173,000-member community, is the largest online social network for cancer patients, survivors, and caregivers. A discussion thread in CSN is often initiated by a cancer patient seeking support from other members of CSN. Such discussion threads are multi-party conversations that often provide a source of social support, e.g., by bringing about a change of sentiment from negative to positive on the part of the thread initiator. Sentiment analysis has been used to examine the benefits of such interactions to the participants \parencite{qiu2011get,huh2013text,portier2013understanding}.
+A rich type of dialogue to study the social and emotional effects of alignment is found in interactions that are intended to be supportive from one speaker towards the other (or mutually so).
+\emph{Online health communities} (OHCs) constitute an important source of information and social support for many people afflicted with long-term, serious disease \parencite{dunkel1984social}. Previous studies found that OHC participants report increased social support, reduced levels of depression and psychological stress, increased optimism about life \parencite{rodgers2005internet}, increased ability to cope with patients' health conditions, and improvements in both the physical and the psychological aspects of lives \parencite{dunkel1984social,rodgers2005internet, maloney2005multilevel,beaudoin2008modeling,bouma2015internet}. American Cancer Society's Cancer Survivor Network (CSN), a 173,000-member community, is the largest online social network for cancer patients, survivors, and caregivers. A discussion thread in CSN is often initiated by a cancer patient seeking support from other members of CSN. Such discussion threads are multi-party conversations that often provide a source of social support, e.g., by bringing about a change of sentiment from negative to positive on the part of the thread initiator. Sentiment analysis has been used to examine the benefits of such interactions to the participants \parencite{qiu2011get,huh2013text,portier2013understanding}.
 
 Adequately addressing the social support needs of participants in an OHC, such as CSN, calls for a causal account of aspects of online interaction that enhance the benefits of participation, e.g., an improved sense of well-being, as indicated for example, by a positive change in the sentiment. \citeauthor{bui2016temporal} found that the sentiment of replies in the CSN data appears to causally influence the sentiment of the thread initiator.  This is the only causal account of sentiment change in OHC that we are aware of.
 In the present study, we examine the causal effects of different types of alignment.
@@ -94,7 +43,7 @@ Linguistic alignment has been shown to be a useful indicator predicting improved
 
 Hence, we examine the role of linguistic alignment between reply posts on a conversation thread with their initiating post in bringing about a positive sentiment change of the thread initiator. The main contributions of the paper are as follows: We augment the representation of posts used by \textcite{bui2016temporal} to include an encoding of the lexical/syntactic alignment between the initial post of the thread and the replies to study the linguistic devices associated with positive emotional reinforcement. We adapt the framework to construct a temporal causal model to investigate what causes positive changes in the sentiment of the thread initiator. Our analysis shows that, absent better alternative explanations not included in the model, the positive sentiment  of  reply posts,  and  high lexical alignment between the thread initiating post and the reply posts are the reasons for a positive sentiment change of the thread originator. We further show that our conclusions are robust with respect to the choice of linguistic alignment thresholds and the accuracy of sentiment classification. Our results lend support to a theory of interactive alignment in dialogue.
 
-The rest of the paper is organized as follows: Section 2 introduces some of the necessary background and technical definitions, introducing temporal-causal inference. Section 3 summarizes the CSN data used in the study. Section 4 summarizes our analysis and key findings.  Section 5 concludes with a summary of the paper and a brief discussion of related work and some promising directions for further research.
+The rest of the paper is organized as follows: Section~2 introduces some of the necessary background and technical definitions, introducing temporal-causal inference. Section~3 summarizes the CSN data used in the study. Section~4 summarizes our analysis and key findings.  Section~5 concludes with a summary of the paper and a brief discussion of related work and some promising directions for further research.
 
 % Does LA in online health communities affect the thread initiator' sentiment (often seeking support).
 % understanding impact of OHC
@@ -139,21 +88,19 @@ A variety of measures of linguistic alignment are available to evaluate linguist
 Similarly, \emph{Syntactic Indiscriminate Local Linguistic Alignment (SILLA)} measures the percentage of syntactic rule repetition which appears in both initial (prime) and reply (target) messages in the same conversation. (Syntax was described in form of phrase structure rules by parsing with the Stanford CoreNLP Parser\footnote{\url{http://stanfordnlp.github.io/CoreNLP/}}.)
 
 \subsection{Causal Inference}
-Eliciting causal relationships from observations and experiments is fundamentally important in artificial intelligence \parencite{Pearl2000Causality,Spirtes2000,pearl2016causal}. Of particular interest are models for eliciting causal relations from longitudinal data, i.e., observations of the state if a system over time. For example, \textcite{dagum1992dynamic,ghahramani1998learning} extend \emph{Causal Bayesian Networks} to enable reasoning in dynamic systems. \emph{Granger causality} \parencite{granger1969investigating} offers a framework linking two time series, of which one time series can be a meaningful predictor for another time series after lags of time. However, both dynamic Bayesian networks and Granger causality lack the expressivity needed to represent and reason about the temporal properties of the underlying system, e.g., ``the first positive reply to a post expressing a negative sentiment, with at least 80\% probability, results in a change in sentiment within 5 hours''. \textcite{bui2016temporal} introduced a novel approach that leverages the machinery of temporal causality developed by \textcite{kleinberg_uai09} to uncover the temporal causality of the dynamics of sentiment change (on the part of the thread originators) in OHCs. This approach explicitly captures the temporality of the relationship between cause and effect. In addition to being able to represent properties being true for durations of time, it also allows a direct representation of the time it takes for the cause to show its effect. In the following, we will introduce the framework as it is likely to of broad utility for the study of communicative or psychological mechanisms wherever large-scale time-series data data are used.
+Eliciting causal relationships from observations and experiments is fundamentally important in artificial intelligence \parencite{Pearl2000Causality,Spirtes2000,pearl2016causal}. Of particular interest are models for eliciting causal relations from longitudinal data, i.e., observations of the state if a system over time. For example, \textcite{dagum1992dynamic,ghahramani1998learning} extend \emph{Causal Bayesian Networks} to enable reasoning in dynamic systems. \emph{Granger causality} \parencite{granger1969investigating} offers a framework linking two time series, of which one time series can be a meaningful predictor for another time series after lags of time. However, both dynamic Bayesian networks and Granger causality lack the expressivity needed to represent and reason about the temporal properties of the underlying system, e.g., ``the first positive reply to a post expressing a negative sentiment, with at least 80\% probability, results in a change in sentiment within 5 hours''. \textcite{bui2016temporal} introduced a novel approach that leverages the machinery of temporal causality developed by \textcite{kleinberg_uai09} to uncover the temporal causality of the dynamics of sentiment change (on the part of the thread originators) in OHCs. This approach explicitly captures the temporality of the relationship between cause and effect. In addition to being able to represent properties being true for durations of time, it also allows a direct representation of the time it takes for the cause to show its effect. In the following, we will introduce the framework as it is likely to of broad utility for the study of communicative or psychological mechanisms wherever large-scale time-series data are used.
 
 
 \subsection{Temporal Causality Framework}
 We identify and classify \emph{events} that can represent observable behavior or categorical measurements.  The framework provides a way to reason about these (and only these) events.
 
-\paragraph{Prima facie cause: potential causes.}
+\paragraph{Prima facie (potential) causes}
 An event \emph{$A$} is said to be a \emph{prima facie} or potential cause of an event \emph{$B$} if and only if: (i) \emph{$A$} precedes \textit{$B$}; (ii) the probability of $A$, $p(A)>0$; and (iii) the conditional probability $p(B|A)>p(B)$ \parencite{suppes1970probabilistic}.
 
-More generally, a \emph{prima facie} explanation, refers to a model that is an explanation \emph{at first sight}.  Used commonly as a legal term, it is an explanation that is accepted until proven otherwise.  The use of this qualifier refers to the fact that this framework does not exclude latent variables, or alternative explanations for the observed effects.  It only considers the event classes represented in the causal model, and it presents nothing more than positive evidence that the observed correlation of two event classes is unlikely due to chance or due to alternative cause-effect models.
+More casually, a \emph{prima facie} explanation refers to a model that is an explanation \emph{at first sight}.  Used commonly as a legal term, it is an explanation that is accepted until proven otherwise.   It  reminds us of the fact that this framework does not exclude latent variables that could provide alternative explanations for the observed effects.  It only considers the event classes represented in the causal model, and it presents nothing more than positive evidence that the observed correlation of two event classes is possible on the basis of fundamental temporal and probabilistic contraints. What it does not imply is that it is unlikely due to chance or due to alternative cause-effect models -- this is a question of significance.
 
 
-\paragraph{Causal significance: }
-
-\textcite{kleinberg2012causality} introduced a method for assessing the causal significance of a potential cause of an effect which can be used to identify a genuine cause of an event from among a set of its potential causes. Kleinberg's framework uses temporal logic \parencite{prior1967past} to represent and reason about events that occur in time. Temporal logic is a variant of propositional modal logic that admits the truth value of a formula, constructed from atomic propositions (sentences which are either true or false and encoded by propositional symbols) using logical connectives, (i.e., conjunction, disjunction, and negation) to be time-dependent. Since then, \emph{Probabilistic Computation Tree Logic} (PCTL; \cite{hansson1994logic}) has been developed as an extension of  Computation Tree Logic (CTL) \parencite{clarke1999model}, to quantify the transition probability between the states in CTL. Probabilistic Kripke structures \parencite{clarke1999model} can be used to represent and reason in PCTL.
+\paragraph{Formalization} \textcite{kleinberg2012causality} introduced a method for assessing the causal significance of a potential cause of an effect which can be used to identify a genuine cause of an event from among a set of its potential causes. Kleinberg's framework uses temporal logic \parencite{prior1967past} to represent and reason about events that occur in time. Temporal logic is a variant of propositional modal logic that admits the truth value of a formula, constructed from atomic propositions (sentences which are either true or false and encoded by propositional symbols) using logical connectives, (i.e., conjunction, disjunction, and negation) to be time-dependent. Since then, \emph{Probabilistic Computation Tree Logic} (PCTL; \cite{hansson1994logic}) has been developed as an extension of  Computation Tree Logic (CTL) \parencite{clarke1999model}, to quantify the transition probability between the states in CTL. Probabilistic Kripke structures \parencite{clarke1999model} can be used to represent and reason in PCTL.
 
 % Tree Structure
 \begin{defn} \textbf{Probabilistic Kripke Structure: Given $\zeta$ is a set of atomic propositions, and a probabilistic Kripke Structure $K$ is represented as $K=<S,s_{i},L,T>$, where $S$ is a finite set of states; $s_{i}$ is the initial state of S;  $T$ is a set of $\tau$, $\tau : S \times S \rightarrow [0,1]$ is a probabilistic transition function such that $\forall s \in S: \sum_{{s}' \in S} \tau ({s}',s) = 1$, i.e. the probability of state ${s}'$ to any other state $s$ sums up to be $1$; and $L:S \rightarrow 2^{\zeta}$ is a state labelling function that uniquely identifies every state $s$ in $S$}
@@ -164,17 +111,18 @@ More generally, a \emph{prima facie} explanation, refers to a model that is an e
 \emph{Prima Facie Causes} are defined as follows as follows:
 
 % Prima Facie Causes
-\begin{defn} \textbf{Prima Facie Causes\parencite{kleinberg_uai09}: where $c$ and $e$ are PCTL formulas (cause, effect), $c$ is a prima facie cause of e if there is a $p$ such that the following conditions all hold: (1) $F_{> 0}^{\leq \infty }c$, (2) $c\leadsto_{\geq p}^{\geq 1,\leq \infty}e$, and (3) $F_{<p}^{\leq \infty }e$}
+\begin{defn} \textbf{Prima Facie Causes \parencite{kleinberg_uai09}: where $c$ and $e$ are PCTL formulas (cause, effect), $c$ is a prima facie cause of $e$ if there is a $p$ such that the following conditions all hold: (1) $F_{> 0}^{\leq \infty }c$, (2) $c\leadsto_{\geq p}^{\geq 1,\leq \infty}e$, and (3) $F_{<p}^{\leq \infty }e$}
 \end{defn}
 
 Spelled out, a cause $c$ can be considered a prima facie cause of $e$ if: (1) there exists a path from the initial state in the PCTL whose the path probability $c$ is larger than zero; (2) there exists a path with a probability at least $p$ that $e$ is true within limited time units; and (3) $e$ is reachable from the initial state with a probability at most $p$.
 
+\paragraph{Causal significance}
 %as prima facie causes are considered potential causes,
 Multiple prima facie causes may exist, even though they may differ in terms of how reliable their supporting evidence is. The significance of a prima facie cause is defined as follows:
 
 % Causal Significance
 \begin{defn}
-\textbf{Causal Significance\parencite{kleinberg_uai09}: given a set of prima facie causes $X$ of an effect $e$, the causal significance of a prima facie cause $c$ can be computed as:}
+\textbf{Causal Significance \parencite{kleinberg_uai09}: given a set of prima facie causes $X$ of an effect $e$, the causal significance of a prima facie cause $c$ can be computed as:}
 \label{def:CausalSig}
 \begin{equation}
 \epsilon _{avg} (c,e) = \frac{\sum_{x\in X\setminus c} \epsilon _{x} (c,e) }{\left | X \setminus c \right |}
@@ -186,11 +134,15 @@ Multiple prima facie causes may exist, even though they may differ in terms of h
 
 ($X\setminus c$ denotes set of elements present in $X$ excluding $c$.)
 
+Causal significance makes causal hypotheses comparable.  A threshold for $\epsilon$ can be established that marks whether the causal chain is reliably more likely than chance (with arbitrarily chosen confidence).  However, such an approach assumes a hypothesis for null-hypothesis significance testing -- which can be post-hoc and misleading where large-scale observational data is analyzed. Instead, in this paper, we will derive prima facie causes and then examine the robustness of significance across the parameter space.
 
 
-\section{Data}
+\section{Causal inference in the Cancer Survivor's Network dataset}
+In this section, we apply the methods described before to extract representations, identify and reason about potential causes of sentiment change, and assess the significance of these causes for sentiment change of thread initiator.
 
-Next, we instantiate this framework to examine instances of linguistic adaptation.  We use a collection of online conversations (\emph{threads}) from the \emph{Cancer Survivor's Network} dataset (CSN, \url{csn.cancer.org}, \cite{portier2013understanding}). Most conversations here are support-oriented conversations among participants.% seeking or offering social support.
+\subsection{Source data and sentiment analysis}
+
+We instantiate this framework to examine instances of linguistic adaptation.  We use a collection of online conversations (\emph{threads}) from the \emph{Cancer Survivor's Network} dataset (CSN, \url{csn.cancer.org}, \cite{portier2013understanding}). Most conversations here are support-oriented conversations among participants.% seeking or offering social support.
 %, where cancer patients and cancer survivors with the same disease and under similar situations are in the same sub-communities \parencite{portier2013understanding}.
 
 % Which types of thread are considered
@@ -200,8 +152,6 @@ A conversational \emph{thread} in CSN consist of  an initial post followed by a 
 % Sentiment Classifier (Features, performance)
 In these data, each sentence is classified as expressing either positive or negative sentiment.  A binary post sentiment classifier  \parencite{qiu2011get} does so automatically. This classifier was trained by 298 labelled posts, which were reviewed by experts from American Cancer Society. The classifier uses a variety set of features including number of words in a post, name, slang\footnote{The list of names and Internet slang words: \url{http://sites.google.com/site/qiubaojun/psu-sentiment.zip}}, $SentiStrength$ \parencite{thelwall2010sentiment}, and etc. It yields a classification accuracy of 0.792, and a ROC-area of 0.832.
 
-\section{Analysis and Results}
-%In this section, we extract representations, identify and reason potential causes, and assess the significance of these causes for sentiment change of thread initiator.
 
 \subsection{Representing threads and posts}
 
@@ -306,7 +256,7 @@ Surprisingly, in our two models (lexical and syntactic alignment models), only $
 
 In addition to conditions of prima facie causes, a further property, \emph{complementary prima facie cause}, is inspired by the prima facie cause analysis on $+f$.
 \begin{defn}
-\textbf{Given $C=[c_{1}, c_{2}, \cdots, c_{n}]$ is a set of potential atomic causal factors of $e$, $\left \langle c_{1}, c_{2}, \cdots , c_{n} \right \rangle$ is a set of complementary Prima Facie Causes of $e$ if and only if: (1) $C_{cause}=c_{1} \wedge c_{2} \wedge \cdots \wedge c_{n}$ is a prima facie cause of $e$; (2) $\forall C_{i}= V_{c_{1}} \wedge V_{c_{2}} \wedge \cdots \wedge V_{c_{n}}$, $C_{i}$ is not a prima facie cause of $e$, where $V_{c_{i}} \in \left \{ c_{i}, \neg c_{i}\right \}$, and $C_{i} \neq C_{cause}$.}
+\textbf{Given a set of potential atomic causal factors of $e$, $C=[c_{1}, c_{2}, \cdots, c_{n}]$, $\left \langle c_{1}, c_{2}, \cdots , c_{n} \right \rangle$ is a set of complementary Prima Facie Causes of $e$ if and only if: (1) $C_{cause}=c_{1} \wedge c_{2} \wedge \cdots \wedge c_{n}$ is a prima facie cause of $e$; (2) $\forall C_{i}= V_{c_{1}} \wedge V_{c_{2}} \wedge \cdots \wedge V_{c_{n}}$, $C_{i}$ is not a prima facie cause of $e$, where $V_{c_{i}} \in \left \{ c_{i}, \neg c_{i}\right \}$, and $C_{i} \neq C_{cause}$.}
 \end{defn}
 Intuitively, a set of potential atomic causal factors forms a set of complementary
 prima facie causes of an effect iff (1) the factors together (i.e., the conjunct) forms a prima facie cause of $f$, and (2) the negation of any combination of the factors in the conjunct renders the conjunct to be {\em not} a prima facie cause of f. For example, we found that a reply posts' positive sentiment and its high lexical alignment with the thread initiating post are \emph{complementary prima facie causes} of the final positive sentiment of thread initiator, $+f$.
@@ -327,7 +277,7 @@ First, we would like to caution the reader with regard to the meaning of \emph{s
 
 $\epsilon(+A_T \wedge +r, +f)$ appears in both lexical and syntactic alignment models. In other words, sentiment-positive replies that are either high lexical aligned or high syntactic aligned play a key role in changing the sentiment of the latest post from the thread initiator in a thread. By contrast, sentiment-positive replies that are either low lexically aligned or low syntactically aligned, are not causally significant. Hence, high alignment at both lexical and syntactic level is a meaningful predictor for the final positive sentiment change.
 
-In addition, both $\epsilon(+A_{T} \wedge -r, -f)$ and $\epsilon(-A_{T} \wedge -r, -f)$ are causal significant in both lexical and syntactic alignment models. Specifically, $\epsilon(+A_{T}\wedge -r, -f)$ is smaller than $\epsilon(-A_{T} \wedge -r, -f)$. It suggests that replies with negative sentiment have a stronger causal significant effect in combination with low alignment score than with high alignment score, at both lexical and syntactic levels in  \citegen{kleinberg_uai09}  framework. Therefore, we conclude that the linguistic alignment of replies at both lexical and syntactic levels, together with the sentiment of the replies, causally affect the final sentiment change of the thread initiator.
+In addition, both $\epsilon(+A_{T} \wedge -r, -f)$ and $\epsilon(-A_{T} \wedge -r, -f)$ are causally significant in both lexical and syntactic alignment models. Specifically, $\epsilon(+A_{T}\wedge -r, -f)$ is smaller than $\epsilon(-A_{T} \wedge -r, -f)$. It suggests that replies with negative sentiment have a stronger causal significant effect in combination with low alignment score than with high alignment score, at both lexical and syntactic levels in  \citegen{kleinberg_uai09}  framework. Therefore, we conclude that the linguistic alignment of replies at both lexical and syntactic levels, together with the sentiment of the replies, causally affect the final sentiment change of the thread initiator.
 
 
 \begin{table}[]
@@ -343,7 +293,12 @@ $\epsilon(-A_{T} \wedge -r, -f)$ & 0.046   & 0.051     \\ \hline
 \end{table}
 
 
-\subsection{Impact of the choice of Linguistic Alignment Measures}
+\section{Model diagnostics}
+
+Each of the lexical and syntactic models includes a parameter that determines the adaptation levels considered to be high or low alignment.  It is sensible to examine whether this parameter has an impact on causal inferences.  We present two sets of analyses.  The first demonstrates that the chosen (median) threshold for alignment results in similar conditional (or transitional) probabilities for high vs. low alignment in the case of positive replies given positive initial posts, and, similarly so, negative replies given negative initial posts.  Thus, no sampling bias is being introduced.  Second, we examine the effect of the threshold parameter on the relative significance of competing hypotheses that distinguish possible effects of high vs. low alignment on passing on sentiment.
+
+
+\subsection{Impact of the linguistic alignment threshold on transition probabilities}
 
 % Enlarge font
 \begin{figure}[!htb]
@@ -374,25 +329,25 @@ $\epsilon(-A_{T} \wedge -r, -f)$ & 0.046   & 0.051     \\ \hline
   \includegraphics[width=\linewidth]{Figures/SynAnegi_new_rob_New_Enlarge.pdf}
   \caption{\label{fig:ProbSynNego}}
 \end{subfigure}%
-\caption{Probabilities of replies with different sentiment and syntactic alignment score condition on the sentiment score of the initial post. Vertical lines indicate the thresholds we choose in each model.}
+\caption{Probabilities of replies with positive ($+r$) and negative ($-r$) sentiment and syntactic alignment score conditioned on the sentiment (positive $+o$, negative $-o$) of the initial post. Vertical lines indicate the median values that we chose as thresholds.}
 \label{fig:Probability_Change_Syn}
 \up
 \end{figure}
 
 
-Next, we investigate how the threshold of linguistic alignment affects the transition probabilities in our probability Kripke structures. We investigate a range of values for linguistic alignment threshold around our threshold (the median value of linguistic alignment in this dataset). The lexical alignment threshold (LILLA) changes from 0.0005 to 0.0047, and the syntactic alignment threshold (SILLA) changes from 0.000 to 0.017.
+Next, we investigate how the threshold of linguistic alignment affects the transition probabilities in our  Kripke structures.  (This threshold determines what is considered high and low alignment.) We examine a range of values for linguistic alignment threshold around our threshold (the median value of linguistic alignment in this dataset). The lexical alignment threshold (LILLA) changes from 0.0005 to 0.0047, and the syntactic alignment threshold (SILLA) changes from 0.000 to 0.017.  
 
 
-Figure~\ref{fig:ProbLexPoso} and~\ref{fig:ProbLexNego} show the probability of positive and negative replies with different levels of lexical alignment when the thread is initiated with a negative post and a positive post, respectively. Comparing the probability dynamics of replies with high or low lexical alignment, we note that the probabilities of high lexical alignment is higher than that of low lexical alignment. Members in CSN tend to align with words of the initial post, no matter the sentiment of the initial post.
+Figures~\ref{fig:ProbLexPoso}~\ref{fig:ProbLexNego} show the probability of positive and negative replies with different levels of lexical alignment when the thread is initiated with a negative post and a positive post, respectively. Comparing the probability dynamics of replies with high or low lexical alignment, we note that the probabilities of high lexical alignment is higher than that of low lexical alignment. Members in CSN tend to align with words of the initial post, no matter the sentiment of the initial post.
 
-Also, Figure~\ref{fig:ProbSynPoso} and~\ref{fig:ProbSynNego} show the probability of positive and negative replies with different levels of syntactic alignment when the thread is initiated with a negative post and a positive post, respectively. Unlike in the case of a probabilistic Kripke structure based on a lexical alignment model, there is less syntactic alignment on the thread initiator if the thread is initiated with a post with negative sentiment. Although lexical and syntactic alignment models show that aligned replies are causal factors of the sentiment of the last self-reply in a thread, these results show that syntactic alignment is more sensitive than lexical alignment on the threshold we choose.
-
-
+Also, Figures~\ref{fig:ProbSynPoso} and~\ref{fig:ProbSynNego} show the probability of positive and negative replies with different levels of syntactic alignment when the thread is initiated with a negative post and a positive post, respectively. Unlike in the case of a probabilistic Kripke structure based on a lexical alignment model, there is less syntactic alignment on the thread initiator if the thread is initiated with a post with negative sentiment. Although lexical and syntactic alignment models show that aligned replies are causal factors of the sentiment of the last self-reply in a thread, these results show that syntactic alignment is more sensitive than lexical alignment on the threshold we choose.
 
 
-\subsection{Impact of the choice of linguistic alignment thresholds}
 
-We have shown that linguistic alignment is a potential causal factor of the sentiment of the last self-reply in a thread. Next, we explore how causal significance changes, given various lexical and syntactic alignment thresholds, on the sentiment of the last self-reply. Figure~\ref{fig:Robust_Lex} and Figure~\ref{fig:Robust_Syn} show the causal significance of prima facie causes, $-A_T \wedge +r$ and $+A_T \wedge +r$, of the effect $+f$ and $-f$ using lexical and syntactic alignment scores, respectively.
+
+\subsection{Impact of linguistic alignment thresholds on causal significance}
+
+We have shown that linguistic alignment is a potential causal factor of the sentiment of the last self-reply in a thread. Next, we explore how causal significance changes, given various lexical and syntactic alignment thresholds, on the sentiment of the last self-reply. What we would like to see is whether the significance of causes is robust with respect to the parameter space.  Figure~\ref{fig:Robust_Lex} and Figure~\ref{fig:Robust_Syn} show the causal significance of prima facie causes, $-A_T \wedge +r$ and $+A_T \wedge +r$, of the effect $+f$ and $-f$ using lexical and syntactic alignment scores, respectively.
 
 \begin{figure}[!htb]
 \begin{subfigure}{.5\textwidth}
@@ -428,9 +383,9 @@ Figure~\ref{fig:negf05Lex} suggests that, for lexical alignment, both $+A_{LEX} 
 \label{fig:Robust_Syn}
 \end{figure}
 
-Further, Figure~\ref{fig:posf05Syn} shows that $+A_{SYN} \wedge +r$ consistently shows up as a prima facie cause. The causal significance of $+A_{SYN} \wedge +r$ drops substantially after increasing the threshold a little bit. However, $-A_{SYN} \wedge +r$ is considered as a prima facie cause after increasing the threshold a little bit (i.e., the causal significance of $-A_{SYN} \wedge +r$ is not zero). Therefore, we conclude that $+A_{SYN} \wedge +r$ likely causes $+f$. This finding indicates that having replies with high \emph{syntactic alignment} is not a strong factor on sentiment dynamics of the thread initiator in this OHC.
+Next, we consider syntactic alignment. Figure~\ref{fig:posf05Syn} shows that $+A_{SYN} \wedge +r$ consistently shows up as a prima facie cause. The causal significance of $+A_{SYN} \wedge +r$ drops substantially after increasing the threshold a little bit. $-A_{SYN} \wedge +r$ is considered a prima facie cause after increasing the threshold (i.e., the causal significance of $-A_{SYN} \wedge +r$ is not zero). We conclude that $+A_{SYN} \wedge +r$ likely causes $+f$. This finding indicates that having replies with high \emph{syntactic alignment} is not a strong factor on sentiment dynamics of the thread initiator in this OHC.
 
-Figure~\ref{fig:negf05Syn} shows that both $+A_{SYN} \wedge -r$ and $-A_T \wedge -r$ with the syntactic alignment score are prima facie causes of $-f$. However, the causal significance of $-A_{SYN} \wedge -r$ is consistently and reliably higher than that of $+A_{SYN} \wedge -r$ on $-f$ (Wilcoxon signed-rank test, $p<0.0005$). Thus, messages with negative sentiment complemented by lower syntactic alignment likely cause a more negative sentiment in the thread initiator's final message. This finding complements the causal analysis on $+f$, which suggests that messages with higher syntactic alignment paired with positive sentiment contribute to thread initiators' positive sentiment at the end of a thread. Further, the effect of $-A_{SYN} \wedge -r$ on $-f$ is larger than that of $+A_{SYN} \wedge -r$ on $-f$.
+Considering negative sentiment, Figure~\ref{fig:negf05Syn} shows that both $+A_{SYN} \wedge -r$ and $-A_T \wedge -r$ with the syntactic alignment score are prima facie causes of $-f$. However, the causal significance of $-A_{SYN} \wedge -r$ is consistently and reliably higher than that of $+A_{SYN} \wedge -r$ on $-f$ (Wilcoxon signed-rank test, $p<0.0005$). Thus, messages with negative sentiment combinded with lower syntactic alignment likely cause a more negative sentiment in the thread initiator's final message. This finding complements the causal analysis on $+f$, which suggests that messages with higher syntactic alignment paired with positive sentiment contribute to thread initiators' positive sentiment at the end of a thread. Further, the effect of $-A_{SYN} \wedge -r$ on $-f$ is larger than that of $+A_{SYN} \wedge -r$ on $-f$.
 % Is the effect larger, or do we have stronger evidence (p)?
 % saying that epsilon (a p value) is higher in one
 % case than another seems like a misuse of p values
@@ -440,11 +395,10 @@ Figure~\ref{fig:negf05Syn} shows that both $+A_{SYN} \wedge -r$ and $-A_T \wedge
 In summary, positive messages with high \emph{lexical} alignment are a genuine cause of the positive sentiment of the thread initiator's final message. Positive messages with high \emph{syntactic} alignment represent a weaker cause.
 
 
-\subsection{Impact of accuracy of sentiment classification}
+\subsection{Impact of the accuracy of sentiment classification}
 
-Because we use the sentiment classifier developed by \textcite{qiu2011get} for labelling posts, it is possible that the sentiment labels are incorrect. The  framework introduced in \textcite{kleinberg_uai09} can only model states which are represented accurately. Hence, we use the framework introduced in \textcite{bui2016temporal}, which relaxes this assumption. Specifically, the Bui-Yen-Honavar's temporal causal inference model incorporates the performance (Positive Predictive Value, $PPV=0.848$, Negative Predictive Value, $NPV= 0.670$) of the sentiment classifier estimating the distribution of true labels into our analysis of causal significance.
+Because we use a sentiment classifier \parencite{qiu2011get} for labelling posts, it is expected that some sentiment labels disagree with what human annotators would provide.  \citegen{kleinberg_uai09} can only model states that are represented accurately in the source data. The framework introduced in \textcite{bui2016temporal} relaxes this assumption. Specifically, the Bui-Yen-Honavar's temporal causal inference model incorporates the known performance  of the sentiment classifier (Positive Predictive Value, $PPV=0.848$, Negative Predictive Value, $NPV=0.670$) estimating the distribution of true labels into our analysis of causal significance.
 We found that in the resulting updated Kripke structure, $+A_T \wedge +r$ is a prima facie cause of $+f$, but $-A_T \wedge +r$ is not in both lexical and syntactic models. Also, both $+A_T \wedge -r$ and $-A_T \wedge -r$ are prima facie causes of $-f$. We conclude that our findings of causal significance are robust to errors in sentiment classification.
-
 
 \section{Discussion}
 
@@ -469,16 +423,11 @@ The data are also
 compatible with a model of a language comprehension system where syntactic and lexical choices can make contributions to high-level meaning that are independent from each other.
 
 
-Looking at the psychological theory of dialogue, we find an analogy in the Interactive Alignment Model (IAM) \parencite{pickering2004toward}, which proposes that alignment helps people improve mutual understanding.  For task-oriented dialogue, there is empirical evidence for this proposal \parencite{reitter2014,xu2017acl}.  Here, we find evidence for a relationship from lexical alignment to emotional alignment in the emotionally supportive dialogue.  However, rather than saying that alignment at one level leads to more alignment at another (as per the IAM), we find that poor linguistic alignment combined with negative emotions helps convey these emotions, and that good linguistic alignment combined with a positive message may help convey positive emotions.
+Looking at the psychological theory of dialogue, we find an analogy in the Interactive Alignment Model (IAM) \parencite{pickering2004toward}, which proposes that alignment helps people improve mutual understanding.  For task-oriented dialogue, there is empirical evidence for this proposal \parencite{fusaroli2012coming,reitter2014alignment,xu2018information}.  Here, we find evidence for a relationship from lexical alignment to emotional alignment in the emotionally supportive dialogue.  However, rather than saying that alignment at one level leads to more alignment at another (as per the IAM), we find that poor linguistic alignment combined with negative emotions helps convey these negative emotions, and that good linguistic alignment combined with a positive message may help convey positive emotions.
 
 % THE FOLLOWING DOESN"T MAKE SENSE IF -A_T & -s -> -f.
 
 %So, what is the psychological mechanism that produces the effect we see, i.e., sentiment change that is facilitated by linguistic adaptation?  A plausible explanation starts with memory associations with emotions. As speakers use words in a context that triggers certain emotions, then these words and concepts become temporarily associated with these emotions. Later re-use of the words or concepts, whether by other discourse participants or by the target subject (the initiator of the conversation), tends to trigger the same emotions. Thus, lexical alignment can be expected to increase emotional adaptation and, thus, sentiment change.  The same cannot be said for sentence structure as a source of such emotional associations, as syntactic processes are routinized, depending on procedural skills rather than declarative (conceptual, lexical) memories.  Routines are fast, and they are not a source of associative cues for memories or emotions.  Only rare syntactic constructions might be more directly represented in lexical memory, and only these would trigger associated memories.
-
-%\subsection{Summary}
-
-%{\bf to do (DR):  revise w respect to the dialogue\&discourse journal}
-
 
 \section{Conclusions}
 
@@ -506,4 +455,3 @@ Informatics Initiative at Penn State for useful discussions and comments.
 
 
 \printbibliography
-\end{document}

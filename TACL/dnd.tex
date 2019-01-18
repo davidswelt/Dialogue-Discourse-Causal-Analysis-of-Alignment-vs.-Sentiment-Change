@@ -1,0 +1,53 @@
+\documentclass[man,biblatex,floatsintext]{apa6}
+
+%\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{comment}
+\usepackage{breqn}
+\newcommand{\up}{\vspace*{-12pt}}
+%\usepackage[colorinlistoftodos]{todonotes}
+
+\usepackage[american]{babel}
+\usepackage{csquotes}
+\DeclareLanguageMapping{american}{american-apa}
+\addbibresource{causal.bib}
+\addbibresource{reitter-bibl.bib}
+
+\usepackage{latexsym}
+\usepackage{url}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{defn}[thm]{Definition}
+
+\newcommand{\citegen}[1]{\citeauthor{#1}'s (\citeyear{#1})}
+
+%\title{Linguistic alignment in implicit and explicit memory processes: Temporal-Causal Inference on sentiment change and communicative choices}
+\title{How linguistic alignment is linked to sentiment change: An example of temporal-causal inference on large-scale dialogue data}
+\shorttitle{Alignment and sentiment change}
+
+% to do - talk to co-authors
+%, Ngot Bui, and Vasant Honavar \\
+
+\fiveauthors{David Reitter}
+{Yafei Wang}
+{John Yen}
+{Ngot Bui}
+{Vasant Honavar}
+
+\fiveaffiliations{Penn State, Google AI}
+{Penn State, LinkedIn}
+{Penn State}
+{Penn State, Google}
+{Penn State}
+
+%{\tt reitter@psu.edu, yawang1@linkedin.com, jyen@ist.psu.edu, bpngot@google.com, vhonavar@ist.psu.edu}
+
+%% NOTE:  INCLUDE ACKNOWLEDGEMENTS IN FINAL VERSION
+
+\begin{document}
+\include{main}
+\end{document}

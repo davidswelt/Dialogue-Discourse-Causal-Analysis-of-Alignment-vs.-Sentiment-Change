@@ -1,0 +1,60 @@
+\documentclass{clv3}
+
+\usepackage{hyperref}
+\usepackage{xcolor}
+\definecolor{darkblue}{rgb}{0, 0, 0.5}
+\hypersetup{colorlinks=true,citecolor=darkblue, linkcolor=darkblue, urlcolor=darkblue}
+
+\bibliographystyle{compling}
+\newcommand{\textcite}[1]{\citet{#1}}
+\newcommand{\parencite}[1]{\citep{#1}}
+\newcommand{\citegen}[1]{\citeauthor{#1}'s (\citeyear{#1})}
+\renewcommand{\cite}[1]{\citealp{#1}}
+
+% test compatibility with algorithmic.sty
+%\usepackage{algorithmic}
+
+\issue{1}{1}{2019}
+
+%\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{comment}
+%\usepackage{breqn}
+\newcommand{\up}{\vspace*{-12pt}}
+%\usepackage[colorinlistoftodos]{todonotes}
+
+%\usepackage{biblatex}
+%\usepackage[american]{babel}
+%\usepackage{csquotes}
+%\DeclareLanguageMapping{american}{american-apa}
+%\addbibresource{causal.bib}
+%\addbibresource{reitter-bibl.bib}
+
+\usepackage{latexsym}
+\usepackage{url}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{defn}[thm]{Definition}
+
+%\dochead{Alignment and Sentiment Change}
+
+\runningtitle{Alignment and Sentiment Change}
+\runningauthor{Reitter et al.}
+
+\begin{document}
+\title{How linguistic alignment is linked to sentiment change: An example of temporal-causal inference on large-scale dialogue data}
+%\shorttitle{Alignment and sentiment change}
+\author{
+David Reitter, {\it Penn State, Google}\\
+Yafei Wang, {\it Penn State, LinkedIn}\\
+John Yen, {\it Penn State}\\
+Ngot Bui, {\it Penn State, Google}\\
+Vasant Honavar, {\it Penn State}}
+
+\include{main}
+\bibliography{causal.bib,reitter-bibl.bib}%
+\end{document}
